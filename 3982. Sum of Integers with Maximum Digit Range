@@ -1,0 +1,39 @@
+class Solution:
+    def maxDigitRange(self, nums: list[int]) -> int:
+        
+        # Store the digit range (largest digit - smallest digit)
+        # for each number in the array
+        digitRange = []
+
+        # Process each number one by one
+        for n in nums:
+
+            # Initialize:
+            # l -> largest digit found so far
+            # s -> smallest digit found so far
+            l = -float("inf")
+            s = float("inf")
+
+            # Extract digits until the number becomes 0
+            while n:
+
+                # Get the last digit
+                d = n % 10
+
+                # Update largest digit if current digit is larger
+                l = max(l, d)
+
+                # Update smallest digit if current digit is smaller
+                s = min(s, d)
+
+                # Remove the last digit from the number
+                n = n // 10
+
+            # Store difference between largest and smallest digit
+            digitRange.append(l - s)
+
+        # Find the maximum digit range among all numbers
+        maximum = max(digitRange)
+
+        # Return the result
+        return maximum
